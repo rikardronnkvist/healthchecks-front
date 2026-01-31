@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   healthchecks-front:
     image: ghcr.io/rikardronnkvist/healthchecks-front:latest
