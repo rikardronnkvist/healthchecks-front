@@ -1,4 +1,5 @@
 import Head from "next/head";
+import getConfig from 'next/config';
 
 import useSWR from "swr";
 import fetcher from "../libs/fetch";
@@ -8,6 +9,9 @@ import Check from "../components/Check";
 import { XIcon } from "@heroicons/react/outline";
 
 export default function Home() {
+    const { publicRuntimeConfig } = getConfig();
+    const siteName = publicRuntimeConfig.name || process.env.NEXT_PUBLIC_NAME || "Healthchecks Front";
+    
     const { data: checks, error: errorChecks } = useSWR(
         "/v1/checks/",
         fetcher,
@@ -53,9 +57,7 @@ export default function Home() {
         <div>
             <Head>
                 <title>
-                    {process.env.NEXT_PUBLIC_NAME
-                        ? process.env.NEXT_PUBLIC_NAME
-                        : "Healthchecks Front"}
+                    {siteName}
                 </title>
                 <meta
                     name="description"
@@ -63,11 +65,7 @@ export default function Home() {
                 />
                 <meta
                     property="og:title"
-                    content={
-                        process.env.NEXT_PUBLIC_NAME
-                            ? process.env.NEXT_PUBLIC_NAME
-                            : "Healthchecks Front"
-                    }
+                    content={siteName}
                 />
                 <meta property="og:image" content="og_image.png" />
                 <meta
