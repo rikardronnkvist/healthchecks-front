@@ -1,5 +1,5 @@
 import Head from "next/head";
-import getConfig from 'next/config';
+import { useState, useEffect } from "react";
 
 import useSWR from "swr";
 import fetcher from "../libs/fetch";
@@ -9,8 +9,14 @@ import Check from "../components/Check";
 import { XIcon } from "@heroicons/react/outline";
 
 export default function Home() {
-    const { publicRuntimeConfig = {} } = getConfig() || {};
-    const siteName = publicRuntimeConfig.name || process.env.NEXT_PUBLIC_NAME || "Healthchecks Front";
+    const [siteName, setSiteName] = useState("Healthchecks Front");
+    
+    useEffect(() => {
+        fetch('/api/config')
+            .then(res => res.json())
+            .then(config => setSiteName(config.name))
+            .catch(() => setSiteName("Healthchecks Front"));
+    }, []);
     
     const { data: checks, error: errorChecks } = useSWR(
         "/v1/checks/",
