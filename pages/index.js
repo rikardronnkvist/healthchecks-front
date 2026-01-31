@@ -9,7 +9,7 @@ import Check from "../components/Check";
 import { XIcon } from "@heroicons/react/outline";
 
 export default function Home() {
-    const { publicRuntimeConfig } = getConfig();
+    const { publicRuntimeConfig = {} } = getConfig() || {};
     const siteName = publicRuntimeConfig.name || process.env.NEXT_PUBLIC_NAME || "Healthchecks Front";
     
     const { data: checks, error: errorChecks } = useSWR(

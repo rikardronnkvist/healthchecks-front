@@ -1,7 +1,7 @@
 import getConfig from 'next/config';
 
 export default async function fetcher(...args) {
-    const { publicRuntimeConfig } = getConfig();
+    const { publicRuntimeConfig = {} } = getConfig() || {};
     const baseUrl = publicRuntimeConfig.url || process.env.NEXT_PUBLIC_URL || "https://healthchecks.io";
     args[0] = baseUrl + "/api" + args[0];
 
