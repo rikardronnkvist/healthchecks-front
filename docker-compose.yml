@@ -8,6 +8,6 @@ services:
       - "3000:3000"
     environment:
       - HEALTHCHECKS_APIKEY=${HEALTHCHECKS_APIKEY}
-      - HEALTHCHECKS_NAME=${HEALTHCHECKS_NAME:-Health Checks}
-      - HEALTHCHECKS_URL=${HEALTHCHECKS_URL:-https://healthchecks.io}
+      - HEALTHCHECKS_NAME=Health Checks
+      - HEALTHCHECKS_URL=https://healthchecks.io
     restart: unless-stopped
