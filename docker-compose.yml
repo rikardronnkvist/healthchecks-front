@@ -7,7 +7,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - NEXT_PUBLIC_APIKEY=${NEXT_PUBLIC_APIKEY}
-      - NEXT_PUBLIC_NAME=${NEXT_PUBLIC_NAME:-Health Checks}
-      - NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL:-https://healthchecks.io}
+      - HEALTHCHECKS_APIKEY=${HEALTHCHECKS_APIKEY}
+      - HEALTHCHECKS_NAME=${HEALTHCHECKS_NAME:-Health Checks}
+      - HEALTHCHECKS_URL=${HEALTHCHECKS_URL:-https://healthchecks.io}
     restart: unless-stopped

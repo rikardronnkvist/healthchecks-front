@@ -10,8 +10,8 @@ async function getConfigData() {
     } catch (error) {
         console.error('Failed to load config:', error);
         return {
-            apiKey: process.env.NEXT_PUBLIC_APIKEY || '',
-            url: process.env.NEXT_PUBLIC_URL || 'https://healthchecks.io',
+            apiKey: process.env.HEALTHCHECKS_APIKEY || '',
+            url: process.env.HEALTHCHECKS_URL || 'https://healthchecks.io',
         };
     }
 }

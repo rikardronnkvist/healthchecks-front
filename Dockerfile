@@ -46,8 +46,8 @@ USER nextjs
 EXPOSE 3000
 
 ENV PORT 3000
-ENV NEXT_PUBLIC_APIKEY=""
-ENV NEXT_PUBLIC_NAME="Health Checks"
-ENV NEXT_PUBLIC_URL="https://healthchecks.io"
+ENV HEALTHCHECKS_APIKEY=""
+ENV HEALTHCHECKS_NAME="Health Checks"
+ENV HEALTHCHECKS_URL="https://healthchecks.io"
 
 CMD ["npm", "start"]
