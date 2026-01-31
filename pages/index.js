@@ -18,7 +18,7 @@ export default function Home() {
     let checksTotal = 0;
     let checksError = 0;
 
-    if (checks) {
+    if (checks && checks.checks && Array.isArray(checks.checks)) {
         // Sort errors first
         checks.checks.sort(function (a) {
             return a.status == "down" ? -1 : 0;
@@ -96,10 +96,30 @@ export default function Home() {
                         <h1 className="text-red-500 font-bold text-xl">
                             There was an error fetching the API
                         </h1>
+                        <p className="text-gray-500 mt-2 text-sm">
+                            {errorChecks.message || "Please check your API key and URL"}
+                        </p>
                     </div>
                 )}
 
-                {checks && (
+                {checks && !checks.checks && (
+                    <div className="text-center m-8">
+                        <div className="bg-yellow-600 h-16 w-16 p-3 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <XIcon className="w-full text-white" />
+                        </div>
+                        <h1 className="text-yellow-600 font-bold text-xl">
+                            Unexpected API response
+                        </h1>
+                        <p className="text-gray-500 mt-2 text-sm">
+                            The API returned data but in an unexpected format
+                        </p>
+                        <pre className="text-left text-xs mt-4 p-4 bg-gray-100 rounded overflow-auto max-h-64">
+                            {JSON.stringify(checks, null, 2)}
+                        </pre>
+                    </div>
+                )}
+
+                {checks && checks.checks && (
                     <div className="my-5">
                         <div className="w-36 h-36 relative mx-auto my-1s">
                             <div
