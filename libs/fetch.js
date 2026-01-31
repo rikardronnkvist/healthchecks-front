@@ -1,5 +1,6 @@
 export default async function fetcher(...args) {
-    args[0] = "https://healthchecks.io/api" + args[0];
+    const baseUrl = process.env.NEXT_PUBLIC_URL || "https://healthchecks.io";
+    args[0] = baseUrl + "/api" + args[0];
 
     args[1] = {
         ...args[1],
